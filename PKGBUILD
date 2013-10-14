@@ -3,7 +3,7 @@
 
 pkgname=df-lnp-installer
 pkgver=0.3.1
-pkgrel=1
+pkgrel=0
 pkgdesc="Installer for the Lazy Newby Pack to run Dwarf Fortress"
 arch=(x86_64)
 url="https://github.com/andrewd18/df-lnp-installer"
@@ -24,7 +24,7 @@ backup=()
 options=()
 install="$pkgname.install"
 changelog=
-source=(hg+https://code.google.com/r/dwarftherapist
+source=(hg+https://code.google.com/r/splintermind-attributes
         fix_file_path.diff
         https://drone.io/bitbucket.org/Dricus/lazy-newbpack/files/target/lazy-newbpack-linux-0.5.3-SNAPSHOT-20130822-1652.tar.bz2
         http://www.bay12games.com/dwarves/df_34_11_linux.tar.bz2
