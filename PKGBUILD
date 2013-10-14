@@ -1,6 +1,5 @@
 # Maintainer: Your Name <youremail@domain.com>
 
-_installation="home/$USER/bin/Dwarf Fortress" # Don't put a trailing slash !
 
 pkgname=df-lnp-installer
 pkgver=0.3.1
@@ -66,48 +65,48 @@ build() {
   make
       }
 package() {
-  install -d "$pkgdir/$_installation"
+  install -d "$pkgdir/opt"
 
   # install lnp
   cd "$srcdir"
-  install -Dm755 lazy-newbpack-gui-0.5.3-SNAPSHOT.jar startlnp "$pkgdir/$_installation/"
-  cp -r LNP "$pkgdir/$_installation/LNP"
+  install -Dm755 lazy-newbpack-gui-0.5.3-SNAPSHOT.jar startlnp "$pkgdir/opt/"
+  cp -r LNP "$pkgdir/opt/LNP"
   # yaml to save
  
   # install df vanilla
 
-  cp -r $srcdir/df_linux/ "$pkgdir/$_installation/"
+  cp -r $srcdir/df_linux/ "$pkgdir/opt/"
   # Yay for precompiled stuff with junk permissions! :D
-  find "$pkgdir/$_installation/df_linux" -type d -exec chmod 755 {} +
-  find "$pkgdir/$_installation/df_linux" -type f -exec chmod 644 {} +
-  chmod 755 "$pkgdir/$_installation/df_linux/df"
-  chmod 755 "$pkgdir/$_installation/df_linux/libs/Dwarf_Fortress"
+  find "$pkgdir/opt/df_linux" -type d -exec chmod 755 {} +
+  find "$pkgdir/opt/df_linux" -type f -exec chmod 644 {} +
+  chmod 755 "$pkgdir/opt/df_linux/df"
+  chmod 755 "$pkgdir/opt/df_linux/libs/Dwarf_Fortress"
   
   # unfunck graphic.so
   install -Dm755 $srcdir/dwarf_fortress_unfuck/libs/libgraphics.so \
-    "$pkgdir/$_installation/df_linux/libs/libgraphics.so"
+    "$pkgdir/opt/df_linux/libs/libgraphics.so"
 
-  ln -s /usr/lib32/libpng.so "$pkgdir/$_installation/df_linux/libs/libpng.so.3"
-  rm "$pkgdir/$_installation/df_linux/libs/"{libgcc_s.so.1,libstdc++.so.6}
+  ln -s /usr/lib32/libpng.so "$pkgdir/opt/df_linux/libs/libpng.so.3"
+  rm "$pkgdir/opt/df_linux/libs/"{libgcc_s.so.1,libstdc++.so.6}
 
   # install dfhack 
   cd "$srcdir"
-  cp -r stonesense hack "$pkgdir/$_installation/df_linux" # dfusion ?
-  install -Dm755 dfhack.init-example "$pkgdir/$_installation/df_linux"
-  install -Dm644 dfhack dfhack-run "$pkgdir/$_installation/df_linux"
+  cp -r stonesense hack "$pkgdir/opt/df_linux" # dfusion ?
+  install -Dm755 dfhack.init-example "$pkgdir/opt/df_linux"
+  install -Dm644 dfhack dfhack-run "$pkgdir/opt/df_linux"
 
   # install falconne_dfhack_plugins
   cd "$srcdir/Linux" 
-  install -Dm644 * "$pkgdir/$_installation/df_linux/hack/plugins/"
+  install -Dm644 * "$pkgdir/opt/df_linux/hack/plugins/"
 
   cd $srcdir/soundsense
   # Make soundSense shell script executable.
   chmod +x "soundSense.sh"
   # install soundsense
-  cp -r $srcdir/soundsense/ "$pkgdir/$_installation/LNP/utilities"
+  cp -r $srcdir/soundsense/ "$pkgdir/opt/LNP/utilities"
 
   
-  install -d "$pkgdir/$_installation/LNP/utilities/dwarf_therapist"
+  install -d "$pkgdir/opt/LNP/utilities/dwarf_therapist"
   cd "$srcdir/dwarftherapist"
-  #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/$_installation/LNP/utilities/dwarf_therapist/"
+  #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/LNP/utilities/dwarf_therapist/"
     }
