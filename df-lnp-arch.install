@@ -1,20 +1,93 @@
-installation="/home/yann/bin/Dwarf Fortress"
+pkgname=df-nlp-arch
+
+# Files (either directory or files) to keep in path relating to yours installation
+FILES_TO_SAVE="df_linux/data/saves/ \
+            LNP/lnp.yaml \
+            df_linux/data/init/{d_init.txt,init.txt}"
+            
 
 post_install() {
     echo "pre_upgrade"
+
+    DEFAULT_INSTALL="bin/Dwarf Fortress3" # Will hahe a trailing $HOME
+
+    users_valid=false
+    while [ $users_valid != "true" ]; do
+        echo ''
+        echo  "For which users install df-lnp ? "
+
+        read users
+
+        # Chek if every user is valid
+        users_valid=true
+        for user in $users; do
+            if [ ! -d "/home/$user" ]
+            then users_valid=false
+                echo "$user is not a valid user"
+            fi
+        done
+    done
+
+    echo -n ""
+    # Determine where should we install df
+    for user in $users; do
+        INSTALL_DIR="/home/$user/$DEFAULT_INSTALL"
+
+        echo -n "For $user, where should Dwarf Fortress be installed? [$INSTALL_DIR]: "
+        read PREFERRED_DIR
+        
+        # If the user entered a preferred directory, use that,
+        # otherwise use the install directory.
+        if [ -n "$PREFERRED_DIR" ]; then
+        # Use sed and custom ; delimeter to replace the first instance of ~ with the user's home directory.
+            INSTALL_DIR=$(echo "$PREFERRED_DIR" | sed "s;~;$HOME;")
+        fi
+
+        su $user -c "cp -rn /opt/df-lnp-arch/ \"$INSTALL_DIR\""
+
+        # Save the preference
+        echo "INSTALL_DIR" >"/etc/$pkgname/$user"
+
+    done
+
 }
+
+
+#######################################
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 pre_upgrade() {
-    echo "pre_upgrade"
-	# do something here
 }
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
-    echo "post upgrade"
+
+    # backup 
+    for user in $(ls /etc/$pkgname); do
+        directory=$(cat $user)
+
+        mv $directory /tmp/$pkgname-$2/$user/
+        echo "Save $directory"
+
+        # New installation
+        su $user -c "cp -rn /opt/$pkgname/ \"$directory\""
+
+        echo "Fresh installation in $directory"
+
+        # Restore save
+        cd /tmp/$pkgname-$2/$user/
+        for file in $FILES_TO_SAVE; do
+            if [ -e file ]
+            then cp -r file "$directory/$file"
+                echo "Restored $file"
+            else echo "$file doesn't exist"
+            fi
+        done
+    done
+
+
 	# do something here
 }
 
@@ -27,3 +100,5 @@ post_upgrade() {
 #post_remove() {
 	# do something here
 #
+
+

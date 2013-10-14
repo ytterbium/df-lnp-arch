@@ -112,4 +112,6 @@ package() {
   install -d "$pkgdir/opt/$pkgname/LNP/utilities/dwarf_therapist"
   cd "$srcdir/splintermind-attributes"
   #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/$pkgname/LNP/utilities/dwarf_therapist/"
+
+  install -d "$pkgdir/etc/$pkgname" # Where to save users  configuration
     }
