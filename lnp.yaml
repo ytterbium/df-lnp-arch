@@ -41,30 +41,34 @@ links:
    title: Dwarf Fortress Website
    # Wether or not this should display as a separator (a horizontal line in the menu).
    separator: false
+
 -  title: Dwarf Fortress Forums
    url: http://www.bay12forums.com/smf
    separator: false
+
 -  title: Dwarf Fortress Wiki
    url: http://dwarffortresswiki.org
    separator: false
+
 -  separator: true    # This is a separator. The other settings don't need to be specified. 
--  title: Pack thread
-   url: http://link.to.the.thread.of/your.pack
+
+-  title: Lazy Newb Pack Installer for Linux
+url: http://www.bay12forums.com/smf/index.php?topic=130792
    separator: false
 
 
 folders: 
    # The relative or absolute path to the folder. When you specify a relative path, it will be relative to the root
    # LNP folder.
--  path: Test Folder  # This is a relative path
+   #-  path: Test Folder  # This is a relative path
    # The title of the folder. The actual text in the Folders menu will be "Open <title> Folder", just like the built-in
    # folders.
-   title: Test
+   #   title: Test
    # Wether or not this should display as a separator (a horizontal line in the menu).
-   separator: false
--  separator: true    # This is a separator. The other settings don't need to be specified. 
--  path: C:\WINDOWS   # This is an absolute path
-   separator: false
-   title: Windows
+   #separator: false
+   #-  separator: true    # This is a separator. The other settings don't need to be specified. 
+   #-  path: C:\WINDOWS   # This is an absolute path
+   #separator: false
+   #title: Windows
 
 
