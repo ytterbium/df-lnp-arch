@@ -73,7 +73,7 @@ package() {
   cd "$srcdir"
   install -Dm755 lazy-newbpack-gui-0.5.3-SNAPSHOT.jar startlnp "$pkgdir/opt/$pkgname/"
   cp -r LNP "$pkgdir/opt/$pkgname/LNP"
-  install -m644 lnp.yaml "/opt/$pkgname/LNP/" # Default configuration
+  install -m644 lnp.yaml "$pkgdir/opt/$pkgname/LNP/" # Default configuration
   # yaml to save
  
   # install df vanilla
