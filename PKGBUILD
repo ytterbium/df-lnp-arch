@@ -26,6 +26,7 @@ install="$pkgname.install"
 changelog=
 source=(hg+https://code.google.com/r/splintermind-attributes
         fix_file_path_v2.diff
+        lnp.yaml
         https://drone.io/bitbucket.org/Dricus/lazy-newbpack/files/target/lazy-newbpack-linux-0.5.3-SNAPSHOT-20130822-1652.tar.bz2
         http://www.bay12games.com/dwarves/df_34_11_linux.tar.bz2
         git://github.com/svenstaro/dwarf_fortress_unfuck.git
@@ -36,6 +37,7 @@ noextract=()
 #md5sums=() #generate with 'makepkg -g'
 md5sums=('SKIP'
          '49b0891003ab10722fa5db00edb65740'
+         '42db1a7f3e238ce2da8cfde4e7516583'
          '7546f2829be94b6ab917743b7ee58a32'
          '33e26a93e5914f7545fa1aaa53706eeb'
          'SKIP'
@@ -71,6 +73,7 @@ package() {
   cd "$srcdir"
   install -Dm755 lazy-newbpack-gui-0.5.3-SNAPSHOT.jar startlnp "$pkgdir/opt/$pkgname/"
   cp -r LNP "$pkgdir/opt/$pkgname/LNP"
+  install -m644 lnp.yaml "/opt/$pkgname/LNP/" # Default configuration
   # yaml to save
  
   # install df vanilla

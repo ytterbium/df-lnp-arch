@@ -1,0 +1,70 @@
+customKeybindsFiles: []
+dfDirectory: df_linux
+dfExecutable: dfhack
+folders: []
+graphicsPacks: []
+#-  name: '[12x12] Jolly Bastion 34.10v5'
+#   directory: '[12x12] Jolly Bastion 34.10v5'
+#-  name: '[16x16] ASCII Default 0.34.11'
+#   directory: '[16x16] ASCII Default 0.34.11'
+#-  name: '[16x16] CLA v15'
+#   directory: '[16x16] CLA v15'
+#-  name: '[16x16] Ironhand 0.73.4'
+#   directory: '[16x16] Ironhand 0.73.4'
+#-  name: '[16x16] Mayday 0.34.11'
+#   directory: '[16x16] Mayday 0.34.11'
+#-  name: '[16x16] Phoebus 34.11v01'
+#   directory: '[16x16] Phoebus 34.11v01'
+#-  name: '[16x16] Obsidian 0.8a'
+#   directory: '[16x16] Obsidian 0.8a'
+#-  name: '[16x16] Spacefox 34.11v1.0'
+#   directory: '[16x16] Spacefox 34.11v1.0'
+launchDfWithTerminal: true
+terminalPath: xterm
+utilities: 
+-  name: Soundsense r42
+   autostart: true
+   directory: soundsense/
+   executable: soundSense.sh
+   showTerminal: true
+
+-  name: Dwarf Therapist
+   autostart: true
+   directory: dwarf_therapist/
+   executable: DwarfTherapist
+   showTerminal: false
+
+links:
+   # The URL of the website. 
+-  url: http://www.bay12games.com/dwarves
+   # The title of the link as it will appear in the Links menu.
+   title: Dwarf Fortress Website
+   # Wether or not this should display as a separator (a horizontal line in the menu).
+   separator: false
+-  title: Dwarf Fortress Forums
+   url: http://www.bay12forums.com/smf
+   separator: false
+-  title: Dwarf Fortress Wiki
+   url: http://dwarffortresswiki.org
+   separator: false
+-  separator: true    # This is a separator. The other settings don't need to be specified. 
+-  title: Pack thread
+   url: http://link.to.the.thread.of/your.pack
+   separator: false
+
+
+folders: 
+   # The relative or absolute path to the folder. When you specify a relative path, it will be relative to the root
+   # LNP folder.
+-  path: Test Folder  # This is a relative path
+   # The title of the folder. The actual text in the Folders menu will be "Open <title> Folder", just like the built-in
+   # folders.
+   title: Test
+   # Wether or not this should display as a separator (a horizontal line in the menu).
+   separator: false
+-  separator: true    # This is a separator. The other settings don't need to be specified. 
+-  path: C:\WINDOWS   # This is an absolute path
+   separator: false
+   title: Windows
+
+

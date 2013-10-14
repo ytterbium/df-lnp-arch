@@ -1,0 +1,10 @@
+*~
+pkg/
+src/
+*.xz
+*.bz2
+*.zip
+*.gz
+dwarf_fortress_unfuck/
+splintermind-attributes/
+
