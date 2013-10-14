@@ -14,7 +14,7 @@ depends=(gtk2 glu sdl_image libsndfile openal sdl_ttf glew)
 depends=(gcc-multilib lib32-gtk2 lib32-glu lib32-sdl_image lib32-libsndfile lib32-openal
         lib32-libxdamage lib32-ncurses lib32-sdl_ttf lib32-glew)
 # For the LNP
-depends=(xterm lib32-libjpeg-turbo qt4) #qt5-script for splintermind attributes
+depends=(xterm lib32-libjpeg-turbo qt5-script) #qt5-script for splintermind attributes
 makedepends=(git mercurial)
 optdepends=()
 provides=()
@@ -45,8 +45,8 @@ md5sums=('SKIP'
 
 
 prepare() {
-  cd "$srcdir/dwarftherapist"
-  patch -Np0 < "${srcdir}/fix_file_path.diff"
+  cd "$srcdir/splintermind-attributes"
+  patch -Np1 < "${srcdir}/fix_file_path_v2.diff"
 
 
   # Replace SoundSense shell script with a duplicate that uses Unix line endings.
@@ -55,7 +55,7 @@ prepare() {
   mv -f "soundsense_unix.sh" "soundSense.sh"
 }
 build() {
-  cd "$srcdir/dwarftherapist"
+  cd "$srcdir/splintermind-attributes"
   echo `pwd`
   qmake-qt4 dwarftherapist.pro
   #make
@@ -107,6 +107,6 @@ package() {
 
   
   install -d "$pkgdir/opt/LNP/utilities/dwarf_therapist"
-  cd "$srcdir/dwarftherapist"
+  cd "$srcdir/splintermind-attributes"
   #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/LNP/utilities/dwarf_therapist/"
     }

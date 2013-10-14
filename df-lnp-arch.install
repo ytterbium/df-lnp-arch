@@ -1,7 +1,7 @@
 installation="/home/yann/bin/Dwarf Fortress"
 
 post_install() {
-    chown -R --preserve-root yann:users "$installation"
+    echo "pre_upgrade"
 }
 
 ## arg 1:  the new package version
