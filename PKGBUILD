@@ -1,7 +1,7 @@
 # Maintainer: Your Name <youremail@domain.com>
 
 
-pkgname=df-lnp-installer
+pkgname=df-lnp-arch
 pkgver=0.3.1
 pkgrel=0
 pkgdesc="Installer for the Lazy Newby Pack to run Dwarf Fortress"
@@ -25,7 +25,7 @@ options=()
 install="$pkgname.install"
 changelog=
 source=(hg+https://code.google.com/r/splintermind-attributes
-        fix_file_path.diff
+        fix_file_path_v2.diff
         https://drone.io/bitbucket.org/Dricus/lazy-newbpack/files/target/lazy-newbpack-linux-0.5.3-SNAPSHOT-20130822-1652.tar.bz2
         http://www.bay12games.com/dwarves/df_34_11_linux.tar.bz2
         git://github.com/svenstaro/dwarf_fortress_unfuck.git
@@ -35,7 +35,7 @@ source=(hg+https://code.google.com/r/splintermind-attributes
 noextract=()
 #md5sums=() #generate with 'makepkg -g'
 md5sums=('SKIP'
-         'e5109f6cadbd19865f72a8ad86279d92'
+         '49b0891003ab10722fa5db00edb65740'
          '7546f2829be94b6ab917743b7ee58a32'
          '33e26a93e5914f7545fa1aaa53706eeb'
          'SKIP'
