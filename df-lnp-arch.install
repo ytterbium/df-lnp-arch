@@ -1,4 +1,4 @@
-pkgname=df-nlp-arch
+pkgname=df-lnp-arch
 
 # Files (either directory or files) to keep in path relating to yours installation
 FILES_TO_SAVE="df_linux/data/saves/ \
@@ -24,16 +24,17 @@ post_install() {
             if [ ! -d "/home/$user" ]
             then users_valid=false
                 echo "$user is not a valid user"
+            else echo "$user is a valid user"
             fi
         done
     done
 
-    echo -n ""
     # Determine where should we install df
     for user in $users; do
         INSTALL_DIR="/home/$user/$DEFAULT_INSTALL"
+        echo ""
 
-        echo -n "For $user, where should Dwarf Fortress be installed? [$INSTALL_DIR]: "
+        echo "For $user, where should Dwarf Fortress be installed? [$INSTALL_DIR]: "
         read PREFERRED_DIR
         
         # If the user entered a preferred directory, use that,
@@ -43,12 +44,16 @@ post_install() {
             INSTALL_DIR=$(echo "$PREFERRED_DIR" | sed "s;~;$HOME;")
         fi
 
-        su $user -c "cp -rn /opt/df-lnp-arch/ \"$INSTALL_DIR\""
-
         # Save the preference
         echo "INSTALL_DIR" >"/etc/$pkgname/$user"
 
+        su $user -c "cp -rn /opt/df-lnp-arch/ \"$INSTALL_DIR\""
+        echo "Dwarf Fortress installed in $INSTALL_DIR"
+
+
     done
+    echo ""
+    echo "If you want later to add an other installation of Dwaf Fortress, run 'sudo /opt/$pkgname/df-lnp-install.sh'"
 
 }
 
@@ -57,8 +62,8 @@ post_install() {
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
-pre_upgrade() {
-}
+#pre_upgrade() {
+#}
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
@@ -90,15 +95,4 @@ post_upgrade() {
 
 	# do something here
 }
-
-## arg 1:  the old package version
-#pre_remove() {
-	# do something here
-#}
-
-## arg 1:  the old package version
-#post_remove() {
-	# do something here
-#
-
 
