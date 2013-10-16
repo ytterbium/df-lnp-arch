@@ -2,7 +2,7 @@
 
 
 pkgname=df-lnp-arch
-pkgver=0.3.1
+pkgver=0.1.0
 pkgrel=1
 pkgdesc="Installer for the Lazy Newby Pack to run Dwarf Fortress"
 arch=(x86_64)
@@ -14,9 +14,9 @@ depends=(gtk2 glu sdl_image libsndfile openal sdl_ttf glew sudo)
 depends=(gcc-multilib lib32-gtk2 lib32-glu lib32-sdl_image lib32-libsndfile lib32-openal
         lib32-libxdamage lib32-ncurses lib32-sdl_ttf lib32-glew)
 # For the LNP
-depends=(xterm lib32-libjpeg-turbo qt5-script) #qt5-script for splintermind attributes
+depends=(lib32-libjpeg-turbo qt5-script) #qt5-script for splintermind attributes
 makedepends=(git mercurial)
-optdepends=()
+optdepends=('xterm: A terminal is required to run DFhack. Select it in LNP/lnp.yaml' )
 provides=()
 conflicts=()
 replaces=()
@@ -34,7 +34,8 @@ source=(hg+https://code.google.com/r/splintermind-attributes
         git://github.com/svenstaro/dwarf_fortress_unfuck.git
         http://dethware.org/dfhack/download/dfhack-0.34.11-r3-Linux.tar.gz
         http://dffd.wimbli.com/download.php?id=7248\&f=Utility_Plugins_v0.36-Windows-0.34.11.r3.zip.zip
-        http://df.zweistein.cz/soundsense/soundSense_42_186.zip)
+        http://df.zweistein.cz/soundsense/soundSense_42_186.zip
+        http://dffd.wimbli.com/download.php?id=7889\&f=Dwarf+Therapist.pdf)
 noextract=()
 #md5sums=() #generate with 'makepkg -g'
 md5sums=('SKIP'
@@ -47,7 +48,8 @@ md5sums=('SKIP'
          'SKIP'
          '1de4283f17350dd6057a81644cd678f0'
          '6304edcd1321c1a4aa42edb27bdaa7a5'
-         'd75f5e44d54ee995cbe5315e75365a53')
+         'd75f5e44d54ee995cbe5315e75365a53'
+         '7ed4306cd12c76d6fd891eeb2ce63e2d')
 
 
 prepare() {
@@ -121,4 +123,6 @@ package() {
   install -Dm744 $srcdir/df-lnp-installer.sh "$pkgdir/bin/df-lnp-installer"
 
   install -Dm644 "$srcdir/.files_to_save" "$pkgdir/opt/$pkgname" # Where to put the flies to save. One for each installation
+
+  installer -Dm644 "$srcdir/Dwarf\ Therapist.pdf" "$pkgdir/opt/$pkgname/" # A guide to Dwarf Therapist
     }
