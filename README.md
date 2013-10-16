@@ -12,6 +12,7 @@ Included mods :
 * Falconne's DFHack UI Plugins v0.36
 * SoundSense r42 (app only)
 * Dwarf Therapist last version(splintermind, pulled and built from source)
+* A Warf Therapist guide by ResMar
 * And of course Dwarf Fortress 0.34.11
 * If someone want a graphic pack, simply open a issue
 
