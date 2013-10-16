@@ -124,5 +124,5 @@ package() {
 
   install -Dm644 "$srcdir/.files_to_save" "$pkgdir/opt/$pkgname" # Where to put the flies to save. One for each installation
 
-  installer -Dm644 "$srcdir/Dwarf\ Therapist.pdf" "$pkgdir/opt/$pkgname/" # A guide to Dwarf Therapist
+  installer -Dm644 "$srcdir/Dwarf Therapist.pdf" "$pkgdir/opt/$pkgname/" # A guide to Dwarf Therapist
     }
