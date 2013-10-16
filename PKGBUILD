@@ -65,7 +65,7 @@ prepare() {
 build() {
   cd "$srcdir/splintermind-attributes"
   echo `pwd`
-  qmake-qt4 dwarftherapist.pro
+  qmake-qt5 dwarftherapist.pro
   make
 
 
