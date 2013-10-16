@@ -1,0 +1,20 @@
+ df-lnp-arch is an installer of the Dwarf Fortress Lazy Newb Pack for the Arch Linux/Manjaro users . It is freely inspired by the df-lnp-installer.
+
+INSTALLATION :
+
+Clone the git repository with git clone https://github.com/ytterbium/df-lnp-arch.git
+Go to the cloned directory
+Create the package with 'makepkg'
+Install the package with 'sudo pacman -U df-lnp-arch-version.tar.xz
+Follow the prompts
+Once DF is installed, enter the DF folder and run ./startlnp.
+Start the SoundSense r42 utility from the Utilities tab.
+Click the "Pack Update" tab.
+Click "Start Automatic Update".
+Get a Dwarven Ale; it's going to be a while.
+Once finished, close SoundSense, and muck about with LNP as normal.
+
+UPDATE :
+Update your git repository with git pull 
+Recreate a package with makepkg
+Install the package with 'sudo pacman -U df-lnp-arch-new_version.tar.xz
