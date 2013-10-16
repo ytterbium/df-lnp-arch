@@ -35,7 +35,7 @@ source=(hg+https://code.google.com/r/splintermind-attributes
         http://dethware.org/dfhack/download/dfhack-0.34.11-r3-Linux.tar.gz
         http://dffd.wimbli.com/download.php?id=7248\&f=Utility_Plugins_v0.36-Windows-0.34.11.r3.zip.zip
         http://df.zweistein.cz/soundsense/soundSense_42_186.zip
-        http://dffd.wimbli.com/download.php?id=7889\&f=Dwarf+Therapist.pdf)
+        DwarfTherapist.pdf::http://dffd.wimbli.com/download.php?id=7889\&f=Dwarf+Therapist.pdf)
 noextract=()
 #md5sums=() #generate with 'makepkg -g'
 md5sums=('SKIP'
@@ -124,5 +124,5 @@ package() {
 
   install -Dm644 "$srcdir/.files_to_save" "$pkgdir/opt/$pkgname" # Where to put the flies to save. One for each installation
 
-  install -Dm644 "$srcdir/Dwarf Therapist.pdf" "$pkgdir/opt/$pkgname/" # A guide to Dwarf Therapist
+  install -Dm644 "$srcdir/DwarfTherapist.pdf" "$pkgdir/opt/$pkgname/" # A guide to Dwarf Therapist
     }
