@@ -1,7 +1,19 @@
 Overview :
 ===========
  
-df-lnp-arch is an installer of the Dwarf Fortress Lazy Newb Pack for the Arch Linux/Manjaro users . It is freely inspired by the [df-lnp-installer](https://github.com/andrewd18/df-lnp-installer).
+df-lnp-arch is an installer of the Dwarf Fortress Lazy Newb Pack for the Arch Linux/Manjaro users.
+It is freely inspired by the [df-lnp-installer](https://github.com/andrewd18/df-lnp-installer).
+
+Included mods :
+----------------
+
+*Lazy Newb Pack for Linux 0.5.3-SNAPSHOT-20130822-1652
+*DF Hack 0.34.11-r3
+*Falconne's DFHack UI Plugins v0.36
+*SoundSense r42 (app only)
+*Dwarf Therapist last version(splintermind, pulled and built from source)
+*And of course Dwarf Fortress 0.34.11
+*If someone want a graphic pack, simply open a issue
 
 Installation :
 ==============
