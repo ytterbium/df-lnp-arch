@@ -66,7 +66,7 @@ build() {
   cd "$srcdir/splintermind-attributes"
   echo `pwd`
   qmake-qt4 dwarftherapist.pro
-  #make
+  make
 
 
   cd "$srcdir/dwarf_fortress_unfuck"
@@ -117,7 +117,7 @@ package() {
   
   install -d "$pkgdir/opt/$pkgname/LNP/utilities/dwarf_therapist"
   cd "$srcdir/splintermind-attributes"
-  #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/$pkgname/LNP/utilities/dwarf_therapist/"
+  install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/$pkgname/LNP/utilities/dwarf_therapist/"
 
   install -d "$pkgdir/etc/$pkgname" # Where to save users  configuration
   install -Dm744 $srcdir/df-lnp-installer.sh "$pkgdir/bin/df-lnp-installer"
