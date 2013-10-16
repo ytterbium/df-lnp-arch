@@ -1,10 +1,5 @@
 pkgname=df-lnp-arch
 
-# Files (either directory or files) to keep in path relating to yours installation
-FILES_TO_SAVE="df_linux/data/saves/ \
-            LNP/lnp.yaml \
-            df_linux/data/init/{d_init.txt,init.txt}"
-            
 
 post_install() {
     echo "Installation procedure"
@@ -68,25 +63,27 @@ post_upgrade() {
 
     # backup 
     for user in $(ls /etc/$pkgname); do
-        directory=$(cat /etc/$pkgname/$user)
+        src_directory=$(cat /etc/$pkgname/$user)
+        backup_directory=$pkgname-$(date +%s)
         echo ""
 
 
-        mkdir -p /tmp/$pkgname-$2/$user/
-        mv "$directory" /tmp/$pkgname-$2/$user/backup-1/
-        echo "Save $directory"
+        mkdir -p /tmp/$backup_directory/$user/
+        mv "$src_directory" /tmp/$backup_directory/$user/backup-1/
+        echo "Save $src_directory"
 
         # New installation
-        su $user -c "cp -rn /opt/$pkgname/ \"$directory\""
+        su $user -c "cp -rn /opt/$pkgname/ \"$src_directory\""
 
-        echo "Fresh installation in $directory"
+        echo "Fresh installation in $src_directory"
 
         # Restore save
-        cd /tmp/$pkgname-$2/$user/backup-1/
-        echo `pwd`
+        cd /tmp/$backup_directory/$user/backup-1/
+        source .files_to_save # list of files
+
         for file in $FILES_TO_SAVE; do
             if [ -e $file ]
-            then cp -r $file "$directory/$file"
+            then cp -ru $file "$src_directory/$file"
                 echo "Restored $file"
             else echo "$file doesn't exist"
             fi

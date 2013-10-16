@@ -1,0 +1,8 @@
+# Put here all the files (either directory or normal files) you want to keep when upgradingo
+# They must be relative to here
+
+FILES_TO_SAVE="df_linux/data/saves/ \
+                LNP/lnp.yaml \
+                df_linux/data/init/d_init.txt
+                df_linux/data/init/init.txt"
+
