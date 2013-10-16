@@ -53,7 +53,7 @@ links:
 -  separator: true    # This is a separator. The other settings don't need to be specified. 
 
 -  title: Lazy Newb Pack Installer for Linux
-url: http://www.bay12forums.com/smf/index.php?topic=130792
+   url: http://www.bay12forums.com/smf/index.php?topic=130792
    separator: false
 
 
