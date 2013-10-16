@@ -137,6 +137,7 @@ usage() {
     echo "Options:"
     echo "--install  # Install a new installation using the existing package."
     echo "--remove   # Remove an old installation either completely or olny stop the auto update feature."
+}
 
 if [ -n $1 ] && [ -z $2 ]
 then case "$1" in

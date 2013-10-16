@@ -27,7 +27,7 @@ changelog=
 source=(hg+https://code.google.com/r/splintermind-attributes
         fix_file_path_v2.diff
         lnp.yaml
-        df-lnp-install.sh
+        df-lnp-installer.sh
         .files_to_save
         https://drone.io/bitbucket.org/Dricus/lazy-newbpack/files/target/lazy-newbpack-linux-0.5.3-SNAPSHOT-20130822-1652.tar.bz2
         http://www.bay12games.com/dwarves/df_34_11_linux.tar.bz2
@@ -40,7 +40,7 @@ noextract=()
 md5sums=('SKIP'
          '49b0891003ab10722fa5db00edb65740'
          '58207a981e97e8ae0316f1ea12d9c9df'
-         'd769f45bed9d1d4f7e527e8c36f79ee8'
+         '8ab60fd32d38f287abb5f6fcbfc30775'
          '582ab142024311a20aff86823bdc7709'
          '7546f2829be94b6ab917743b7ee58a32'
          '33e26a93e5914f7545fa1aaa53706eeb'
@@ -118,7 +118,7 @@ package() {
   #install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/$pkgname/LNP/utilities/dwarf_therapist/"
 
   install -d "$pkgdir/etc/$pkgname" # Where to save users  configuration
-  install -Dm744 $srcdir/df-lnp-install.sh "$pkgdir/opt/$pkgname/"
+  install -Dm744 $srcdir/df-lnp-installer.sh "$pkgdir/bin/df-lnp-installer"
 
   install -Dm644 "$srcdir/.files_to_save" "$pkgdir/opt/$pkgname" # Where to put the flies to save. One for each installation
     }

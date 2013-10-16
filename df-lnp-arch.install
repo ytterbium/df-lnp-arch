@@ -1,17 +1,52 @@
 pkgname=df-lnp-arch
 
 
+## arg 1 : the source directory
+## arg 2 : the backup directory
+update() {
+    src_directory=$1
+    backup_directory=$2
+
+        mkdir -p $backup_directory
+        mv "$src_directory" $backup_directory
+        echo "Save $src_directory"
+
+        # New installation
+        su $user -c "cp -rn /opt/$pkgname/ \"$src_directory\""
+
+        echo "Fresh installation in $src_directory"
+
+        # Restore save
+        cd $backup_directory
+        source .files_to_save # list of files
+
+        for file in $FILES_TO_SAVE; do
+            if [ -e $file ]
+            then cp -ru $file "$src_directory/$file"
+                echo "Restored $file"
+            else echo "$file doesn't exist"
+            fi
+        done
+}
+
+
 post_install() {
     echo "Installation procedure"
 
     DEFAULT_INSTALL="bin/Dwarf Fortress3" # Will hahe a trailing $HOME
 
     users_valid=false
+
+    # List the existing installations
+    for user in $(ls /etc/$pkgname); do
+        while read src_directory; do
+            echo "$user have already an installation in $src_directory"
+        done < /etc/$pkgname/$user
+    done
+
     while [ $users_valid != "true" ]; do
         echo ''
-        echo  "For which users install df-lnp ? "
-
-        read users
+        read -p "For which users install df-lnp ? " users
 
         # Chek if every user is valid
         # Maybe TODO a better check up
@@ -41,15 +76,18 @@ post_install() {
         fi
 
         # Save the preference
-        echo "$INSTALL_DIR" >"/etc/$pkgname/$user"
+        echo "'$INSTALL_DIR'" >"/etc/$pkgname/$user"
 
-        su $user -c "cp -rn /opt/df-lnp-arch/ \"$INSTALL_DIR\""
-        echo "Dwarf Fortress installed in $INSTALL_DIR"
-
+        if [ ! -d "$INSTALL_DIR/LNP/" ] || [ ! -d "$INSTALL_DIR/df_linux" ]
+            then su $user -c "cp -r /opt/df-lnp-arch/ \"$INSTALL_DIR\""
+            echo "Dwarf Fortress installed in $INSTALL_DIR"
+        else update "$INSTALL_DIR" /tmp/$pkgname-$(date +%s)/$user/backup_1/
+        fi
 
     done
+
     echo ""
-    echo "If you want later to add an other installation of Dwaf Fortress, run 'sudo /opt/$pkgname/df-lnp-install.sh'"
+    echo "If you want later to add an other installation of Dwaf Fortress, or remove it, run 'sudo df-lnp-install'"
 
 }
 
@@ -63,34 +101,15 @@ post_upgrade() {
 
     # backup 
     for user in $(ls /etc/$pkgname); do
-        src_directory=$(cat /etc/$pkgname/$user)
-        backup_directory=$pkgname-$(date +%s)
-        echo ""
 
+        # To let to have several installation per user
+        for src_directory in $(cat /etc/$pkgname/$user); do 
+            backup_directory=/tmp/$pkgname-$(date +%s)/$user/backup_1/
+            echo ""
 
-        mkdir -p /tmp/$backup_directory/$user/
-        mv "$src_directory" /tmp/$backup_directory/$user/backup-1/
-        echo "Save $src_directory"
-
-        # New installation
-        su $user -c "cp -rn /opt/$pkgname/ \"$src_directory\""
-
-        echo "Fresh installation in $src_directory"
-
-        # Restore save
-        cd /tmp/$backup_directory/$user/backup-1/
-        source .files_to_save # list of files
-
-        for file in $FILES_TO_SAVE; do
-            if [ -e $file ]
-            then cp -ru $file "$src_directory/$file"
-                echo "Restored $file"
-            else echo "$file doesn't exist"
-            fi
+            update $src_directory $backup_directory
         done
+
     done
-
-
-	# do something here
 }
 
