@@ -45,7 +45,7 @@ post_install() {
     done
 
     while [ $users_valid != "true" ]; do
-        echo ''
+        echo ""
         read -p "For which users install df-lnp ? " users
 
         # Chek if every user is valid
