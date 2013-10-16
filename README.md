@@ -19,11 +19,11 @@ Included mods :
 Installation :
 ==============
 
-1. Clone the git repository with `git clone https://github.com/ytterbium/df-lnp-arch.git`
+1. Clone the git repository with `git clone git://github.com/ytterbium/df-lnp-arch.git`
 2. Go to the cloned directory with `cd df-lnp-arch`
-3. Create the package with `makepkg`
+3. Create the package with `makepkg`, wait a little until all is downloaded and compiled.
 4. Install the package with `sudo pacman -U df-lnp-arch-version_of_package.tar.xz`
-5. Follow the prompts
+5. Follow the prompts.
 6. Once DF is installed, enter the DF folder and run ./startlnp.
 7. Start the SoundSense r42 utility from the Utilities tab.
 8. Click the "Pack Update" tab.
@@ -34,6 +34,6 @@ Installation :
 Update :
 =======
 
-1. Update your git repository with git pull 
-2. Recreate a package with makepkg
-3. Install the package with 'sudo pacman -U df-lnp-arch-new_version.tar.xz
+1. Update your git repository with git pull .
+2. Recreate a package with makepkg.
+3. Install the package with `sudo pacman -U df-lnp-arch-new_version.tar.xz`
