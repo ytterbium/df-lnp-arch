@@ -33,7 +33,7 @@ update() {
 post_install() {
     echo "Installation procedure"
 
-    DEFAULT_INSTALL="bin/Dwarf Fortress3" # Will hahe a trailing $HOME
+    DEFAULT_INSTALL="bin/Dwarf Fortress" # Will hahe a trailing $HOME
 
     users_valid=false
 
