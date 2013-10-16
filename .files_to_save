@@ -3,6 +3,7 @@
 
 FILES_TO_SAVE="df_linux/data/saves/ \
                 LNP/lnp.yaml \
-                df_linux/data/init/d_init.txt
-                df_linux/data/init/init.txt"
+                df_linux/data/init/d_init.txt \
+                df_linux/data/init/init.txt \
+                LNP/utilities/soundsense/packs/"
 
