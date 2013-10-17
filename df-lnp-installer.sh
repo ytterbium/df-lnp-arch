@@ -8,11 +8,14 @@ update() {
     backup_directory="$2"
 
         mkdir -p $backup_directory
-        mv "$src_directory" $backup_directory
+        for file in $(ls -A "$src_directory"); do
+            echo "$src_directory/$file"
+            mv  "$src_directory/$file" $backup_directory
+        done
         echo "Save $src_directory"
 
         # New installation
-        su $user -c "cp -rn /opt/$pkgname/ \"$src_directory\""
+        su $user -c "cp -r /opt/$pkgname/{*,.files_to_save} \"$src_directory\""
 
         echo "Fresh installation in $src_directory"
 
@@ -27,7 +30,25 @@ update() {
             else echo "$file doesn't exist"
             fi
         done
+
+        file=.files_to_save
+        cp -ru $file "$src_directory/$file"
+        echo "Restored $file"
+
+        # SoundSense comes preconfigured to expect gamelog.txt to be in ../
+        # however this is not the case for the LNP.
+        # This modifies the configuration.xml file so users don't get an annoying
+        # pop-up on start looking for gamelog.txt.
+  
+        # substitute "foo" with "bar" ONLY for lines which contain "baz"
+        # sed '/baz/s/foo/bar/g'
+        # NOTE: Like in ask_for_preferred_install_dir, use custom ; delimeter so as not to
+        # screw up sed with file paths.
+        
+        sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$src_directory/df_linux/gamelog.txt;g" "$src_directory/LNP/utilities/soundsense/configuration.xml" 
+
 }
+
 
 # remove a df installation
 # Serve only in install script
@@ -118,7 +139,10 @@ post_install() {
         echo "$INSTALL_DIR" >"/etc/$pkgname/$user"
 
         if [ ! -d "$INSTALL_DIR/LNP/" ] || [ ! -d "$INSTALL_DIR/df_linux" ]
-            then su $user -c "cp -r /opt/df-lnp-arch/ \"$INSTALL_DIR\""
+        then mkdir -p $INSTALL_DIR
+            su $user -c "cp -r /opt/df-lnp-arch/{*,.files_to_save} \"$INSTALL_DIR\""
+
+            sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$INSTALL_DIR/df_linux/gamelog.txt;g" "$INSTALL_DIR/LNP/utilities/soundsense/configuration.xml" 
             echo "Dwarf Fortress installed in $INSTALL_DIR"
         else update "$INSTALL_DIR" /tmp/$pkgname-$(date +%s)/$user/backup_1/
         fi
