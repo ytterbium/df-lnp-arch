@@ -8,7 +8,7 @@ update() {
     backup_directory="$2"
 
         mkdir -p $backup_directory
-        mv "$src_directory" $backup_directory
+        mv "$src_directory/*" $backup_directory
         echo "Save $src_directory"
 
         # New installation

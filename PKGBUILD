@@ -109,15 +109,22 @@ package() {
   install -Dm644 * "$pkgdir/opt/$pkgname/df_linux/hack/plugins/"
 
   cd $srcdir/soundsense
+  # Replace SoundSense shell script with a duplicate that uses Unix line endings.
+  # sed didn't work for some reason; using tr. :/
+  tr -d '\015' <"soundSense.sh" >"soundsense_unix.sh"
+  mv -f soundsense_unix.sh soundSense.sh
+
   # Make soundSense shell script executable.
   chmod +x "soundSense.sh"
   # install soundsense
   cp -r $srcdir/soundsense/ "$pkgdir/opt/$pkgname/LNP/utilities"
 
-  
+  # install dwarftherapist
   install -d "$pkgdir/opt/$pkgname/LNP/utilities/dwarf_therapist"
   cd "$srcdir/splintermind-attributes"
   install -Dm755 bin/release/DwarfTherapist "${pkgdir}/opt/$pkgname/LNP/utilities/dwarf_therapist/"
+  # install its config file
+  cp -r "etc/" "$pkgdir/opt/$pkgname/LNP/utilities/dwarf_therapist/"
 
   install -d "$pkgdir/etc/$pkgname" # Where to save users  configuration
   install -Dm744 $srcdir/df-lnp-installer.sh "$pkgdir/bin/df-lnp-installer"
