@@ -4,8 +4,8 @@ pkgname=df-lnp-arch
 ## arg 1 : the source directory
 ## arg 2 : the backup directory
 update() {
-    src_directory=$1
-    backup_directory=$2
+    src_directory="$1"
+    backup_directory="$2"
 
         mkdir -p $backup_directory
         mv "$src_directory" $backup_directory
@@ -76,7 +76,7 @@ post_install() {
         fi
 
         # Save the preference
-        echo "'$INSTALL_DIR'" >"/etc/$pkgname/$user"
+        echo "$INSTALL_DIR" >"/etc/$pkgname/$user"
 
         if [ ! -d "$INSTALL_DIR/LNP/" ] || [ ! -d "$INSTALL_DIR/df_linux" ]
             then su $user -c "cp -r /opt/df-lnp-arch/ \"$INSTALL_DIR\""
@@ -103,13 +103,15 @@ post_upgrade() {
     for user in $(ls /etc/$pkgname); do
 
         # To let to have several installation per user
-        for src_directory in $(cat /etc/$pkgname/$user); do 
-            backup_directory=/tmp/$pkgname-$(date +%s)/$user/backup_1/
+        let "i=1"
+        while read src_directory; do
+            backup_directory="/tmp/$pkgname-$(date +%s)/$user/$(basename \"$src_directory\")_$i/"
+            let "i+=1"
             echo ""
 
-            update $src_directory $backup_directory
-        done
-
+            update "$src_directory" "$backup_directory"
+        done < /etc/$pkgname/$user
     done
+
 }
 

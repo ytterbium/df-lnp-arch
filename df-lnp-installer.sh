@@ -4,8 +4,8 @@ pkgname=df-lnp-arch
 ## arg 1 : the source directory
 ## arg 2 : the backup directory
 update() {
-    src_directory=$1
-    backup_directory=$2
+    src_directory="$1"
+    backup_directory="$2"
 
         mkdir -p $backup_directory
         mv "$src_directory" $backup_directory
@@ -72,7 +72,7 @@ remove_installation() {
 post_install() {
     echo "Installation procedure"
 
-    DEFAULT_INSTALL="bin/Dwarf Fortress3" # Will hahe a trailing $HOME
+    DEFAULT_INSTALL="bin/Dwarf Fortress" # Will hahe a trailing $HOME
 
     users_valid=false
 
@@ -84,10 +84,8 @@ post_install() {
     done
 
     while [ $users_valid != "true" ]; do
-        echo ''
-        echo -n "For which users install df-lnp ? "
-
-        read users
+        echo ""
+        read -p "For which users install df-lnp ? " users
 
         # Chek if every user is valid
         # Maybe TODO a better check up
@@ -117,7 +115,7 @@ post_install() {
         fi
 
         # Save the preference
-        echo "'$INSTALL_DIR'" >"/etc/$pkgname/$user"
+        echo "$INSTALL_DIR" >"/etc/$pkgname/$user"
 
         if [ ! -d "$INSTALL_DIR/LNP/" ] || [ ! -d "$INSTALL_DIR/df_linux" ]
             then su $user -c "cp -r /opt/df-lnp-arch/ \"$INSTALL_DIR\""
@@ -128,8 +126,7 @@ post_install() {
     done
 
     echo ""
-    echo "If you want later to add an other installation of Dwaf Fortress, run 'sudo df-lnp-install'"
-}
+    echo "If you want later to add an other installation of Dwaf Fortress, or remove it, run 'sudo df-lnp-install'"
 
 usage() { 
     echo "Usage: df-lnp-installer [OPTIONS]"
