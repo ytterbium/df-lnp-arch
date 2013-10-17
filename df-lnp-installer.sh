@@ -127,6 +127,7 @@ post_install() {
 
     echo ""
     echo "If you want later to add an other installation of Dwaf Fortress, or remove it, run 'sudo df-lnp-install'"
+}
 
 usage() { 
     echo "Usage: df-lnp-installer [OPTIONS]"
