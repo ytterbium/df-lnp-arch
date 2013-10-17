@@ -3,7 +3,7 @@
 
 pkgname=df-lnp-arch
 pkgver=0.1
-pkgrel=4
+pkgrel=5
 pkgdesc="Installer for the Lazy Newby Pack to run Dwarf Fortress"
 arch=(x86_64)
 url="https://github.com/andrewd18/df-lnp-installer"
