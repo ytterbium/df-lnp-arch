@@ -108,6 +108,8 @@ package() {
   cd "$srcdir/Linux" 
   install -Dm644 * "$pkgdir/opt/$pkgname/df_linux/hack/plugins/"
 
+
+  ###########################
   cd $srcdir/soundsense
   # Replace SoundSense shell script with a duplicate that uses Unix line endings.
   # sed didn't work for some reason; using tr. :/
@@ -118,6 +120,14 @@ package() {
   chmod +x "soundSense.sh"
   # install soundsense
   cp -r $srcdir/soundsense/ "$pkgdir/opt/$pkgname/LNP/utilities"
+
+  # SoundSense comes preconfigured to expect gamelog.txt to be in ../
+  # however this is not the case for the LNP.
+  # NOTE: gamelog.txt doesn't exist until DF creates it, and due to LNP start order,
+  # DF often starts after soundsense does. So instead of reworking the LNP start order,
+  # I just manually create a blank one using touch.
+  # Create the gamelog.txt file.
+  touch "$pkgdir/opt/$pkgname/df_linux/gamelog.txt"
 
   # install dwarftherapist
   install -d "$pkgdir/opt/$pkgname/LNP/utilities/dwarf_therapist"

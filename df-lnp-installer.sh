@@ -58,7 +58,7 @@ remove_installation() {
         then rm -r "${locations[$i]}"
             echo "${locations[$i]} removed"
         fi
-        sed -i "/$(echo ${locations[$i]} | sed -e 's/[\/&]/\\&/g')/d" /etc/$pkgname/${users[$i]}
+        sed -i "\;${locations[$i]};d" /etc/$pkgname/${users[$i]}
         echo "Reference to ${locations[$i]} removed"
     done
         
