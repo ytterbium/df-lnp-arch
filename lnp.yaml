@@ -57,7 +57,7 @@ links:
    separator: false
 
 
-folders: 
+folders: []
    # The relative or absolute path to the folder. When you specify a relative path, it will be relative to the root
    # LNP folder.
    #-  path: Test Folder  # This is a relative path

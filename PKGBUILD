@@ -3,7 +3,7 @@
 
 pkgname=df-lnp-arch
 pkgver=0.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Installer for the Lazy Newby Pack to run Dwarf Fortress"
 arch=(x86_64)
 url="https://github.com/andrewd18/df-lnp-installer"
@@ -40,8 +40,8 @@ noextract=()
 #md5sums=() #generate with 'makepkg -g'
 md5sums=('SKIP'
          '49b0891003ab10722fa5db00edb65740'
-         'fe3085b13d61aa9374ceadcacbb7aa45'
-         '7a8a60c067a66654a7b588fe0b4d9e7c'
+         '05ac7bd27418e8c455d78a369f1876ae'
+         '001d14ded2e558ae413f64058bb09bc8'
          'df846366ca2388c97d36be51286499f2'
          '7546f2829be94b6ab917743b7ee58a32'
          '33e26a93e5914f7545fa1aaa53706eeb'
@@ -101,8 +101,8 @@ package() {
   # install dfhack 
   cd "$srcdir"
   cp -r stonesense hack "$pkgdir/opt/$pkgname/df_linux" # dfusion ?
-  install -Dm755 dfhack.init-example "$pkgdir/opt/$pkgname/df_linux"
-  install -Dm644 dfhack dfhack-run "$pkgdir/opt/$pkgname/df_linux"
+  install -Dm644 dfhack.init-example "$pkgdir/opt/$pkgname/df_linux"
+  install -Dm755 dfhack dfhack-run "$pkgdir/opt/$pkgname/df_linux"
 
   # install falconne_dfhack_plugins
   cd "$srcdir/Linux" 
