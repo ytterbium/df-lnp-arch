@@ -45,7 +45,7 @@ update() {
         # NOTE: Like in ask_for_preferred_install_dir, use custom ; delimeter so as not to
         # screw up sed with file paths.
         
-        sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$src_directory/df_linux/gamelog.txt;g" "$src_directory/LNP/utilities/soundsense/configuration.xml" 
+        sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$src_directory/df_linux/gamelog.txt\";g" "$src_directory/LNP/utilities/soundsense/configuration.xml" 
 
 }
 
@@ -102,7 +102,7 @@ post_install() {
         then mkdir -p $INSTALL_DIR
             su $user -c "cp -r /opt/df-lnp-arch/{*,.files_to_save} \"$INSTALL_DIR\""
 
-            sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$INSTALL_DIR/df_linux/gamelog.txt;g" "$INSTALL_DIR/LNP/utilities/soundsense/configuration.xml" 
+            sed -ibak "/\<gamelog/s;path=\"../gamelog.txt\";path=\"$INSTALL_DIR/df_linux/gamelog.txt\";g" "$INSTALL_DIR/LNP/utilities/soundsense/configuration.xml" 
             echo "Dwarf Fortress installed in $INSTALL_DIR"
         else update "$INSTALL_DIR" /tmp/$pkgname-$(date +%s)/$user/backup_1/
         fi
