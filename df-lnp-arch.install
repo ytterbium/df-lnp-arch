@@ -55,7 +55,6 @@ post_install() {
 
     DEFAULT_INSTALL="bin/Dwarf Fortress" # Will hahe a trailing $HOME
 
-    users_valid=false
 
     # List the existing installations
     for user in $(ls /etc/$pkgname); do
@@ -64,9 +63,13 @@ post_install() {
         done < /etc/$pkgname/$user
     done
 
+
+    users_valid=false
+
     while [ $users_valid != "true" ]; do
         echo ""
-        read -p "For which users install df-lnp ? " users
+        echo "For which users install df-lnp ? " 
+        read users
 
         # Chek if every user is valid
         # Maybe TODO a better check up
