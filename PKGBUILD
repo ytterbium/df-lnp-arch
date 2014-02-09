@@ -33,7 +33,7 @@ source=(hg+https://code.google.com/r/splintermind-attributes
         http://www.bay12games.com/dwarves/df_34_11_linux.tar.bz2
         git://github.com/svenstaro/dwarf_fortress_unfuck.git
         http://dethware.org/dfhack/download/dfhack-0.34.11-r3-Linux.tar.gz
-        http://dffd.wimbli.com/download.php?id=7248\&f=Utility_Plugins_v0.36-Windows-0.34.11.r3.zip.zip
+        http://dffd.wimbli.com/download.php?id=7248\&f=Utility_Plugins_v0.42-Windows-0.34.11.r4.zip.zip
         http://df.zweistein.cz/soundsense/soundSense_42_186.zip
         DwarfTherapist.pdf::http://dffd.wimbli.com/download.php?id=7889\&f=Dwarf+Therapist.pdf)
 noextract=()
