@@ -141,3 +141,7 @@ post_upgrade() {
 
 }
 
+post_remove() {
+    echo "Remove config file"
+    rm -r /etc/df-lnp-arch/
+}
