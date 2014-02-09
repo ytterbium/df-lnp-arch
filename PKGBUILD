@@ -36,8 +36,10 @@ source=(hg+https://code.google.com/r/splintermind-attributes
         http://dffd.wimbli.com/download.php?id=7248\&f=Utility_Plugins_v0.42-Windows-0.34.11.r4.zip.zip
         http://df.zweistein.cz/soundsense/soundSense_42_186.zip
         DwarfTherapist.pdf::http://dffd.wimbli.com/download.php?id=7889\&f=Dwarf+Therapist.pdf)
+
 noextract=()
 #md5sums=() #generate with 'makepkg -g'
+
 md5sums=('SKIP'
          '49b0891003ab10722fa5db00edb65740'
          '05ac7bd27418e8c455d78a369f1876ae'
@@ -47,9 +49,10 @@ md5sums=('SKIP'
          '33e26a93e5914f7545fa1aaa53706eeb'
          'SKIP'
          '1de4283f17350dd6057a81644cd678f0'
-         '3891419c7e3572dc6fd78ed0061ef7aa'
+         'eaf2908f8060eabd633e69973ef3e0db'
          'd75f5e44d54ee995cbe5315e75365a53'
          '45026fcc83c429bd450ae1bed4b5ff29')
+
 
 
 prepare() {
